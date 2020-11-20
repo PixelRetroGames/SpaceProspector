@@ -1,0 +1,8 @@
+.vs/*
+Logs/*
+Library/*
+Packages/*
+obj/*
+Temp/*
+*.exe
+*.zip
