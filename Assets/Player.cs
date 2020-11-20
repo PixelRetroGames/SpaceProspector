@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int fireDelay;
+    public float fireDelay;
     public GameObject bullet;
     private int lane;
     private int numberOfLanes;
 
     private float[] lanePositions;
 
-    public float shootCooldown;
+    private float shootCooldown;
     // Start is called before the first frame update
     void Start() {
         lane = 1;
