@@ -53,7 +53,6 @@ public class AsteroidSpawner : MonoBehaviour
             if (freeLanes.Count > 0) {
                 int chosenLane = rng.Next(freeLanes.Count);
                 int lane = freeLanes[chosenLane];
-                print("Chosen lane: " + chosenLane + " lane: " + lane);
                 laneCooldown[lane] = spawnDelay;
                 Instantiate(asteroid, new Vector3(positionX, lanePositions[lane], 0), Quaternion.identity); 
             }
