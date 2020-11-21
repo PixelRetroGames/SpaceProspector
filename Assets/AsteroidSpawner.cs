@@ -20,7 +20,7 @@ public class AsteroidSpawner : MonoBehaviour
 
     private float positionX;
     // Start is called before the first frame update
-    void Start() {
+    void OnEnable() {
         positionX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x;
         rng = new System.Random();
         numberOfLanes = transform.GetComponentInParent<Game>().numberOfLanes;

@@ -9,7 +9,7 @@ public class ScrollBackground : MonoBehaviour
     private float w;
     private float screenWidth;
 
-    void Start () {
+    void OnEnable () {
         screenWidth = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
         spriteRenderer = GetComponent<SpriteRenderer>();
         w = spriteRenderer.bounds.extents.x;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -10,12 +11,12 @@ public class Game : MonoBehaviour
     public int maxHp;
     public int hp;
     private int score;
-    private GameObject scoreObj;
-    private GameObject hpObj;
+    public GameObject scoreObj;
+    public GameObject hpObj;
+    public GameObject deadObj;
+    public GameObject[] deactivateOnDeath;
     // Start is called before the first frame update
-    void Start() {
-        scoreObj = GameObject.FindGameObjectWithTag("Score");
-        hpObj = GameObject.FindGameObjectWithTag("Hp");
+    void OnEnable() {
         score = 0;
         UpdateScoreText();
         hp = maxHp;
@@ -29,7 +30,11 @@ public class Game : MonoBehaviour
 
     private void CheckLoseCondition() {
         if (hp == 0) {
-            print("You lost!");
+            deadObj.SetActive(true);
+            for (int i = 0; i < deactivateOnDeath.Length; i++) {
+                deactivateOnDeath[i].SetActive(false);
+            }
+            Time.timeScale = 0;
             Application.Quit();
         }
     }
@@ -53,5 +58,27 @@ public class Game : MonoBehaviour
         GameObject scoreObj = GameObject.FindGameObjectWithTag("Score");
         scoreObj.GetComponent<Text>().text = "Score: " + score;
         scoreObj.GetComponent<Text>().alignment = TextAnchor.UpperCenter;
+    }
+
+    public void ReloadGame() {
+        Time.timeScale = 1;
+        // SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        // SceneManager.LoadScene("SwitchScene");
+        // SceneManager.LoadScene(S
+        deadObj.SetActive(false);
+        foreach (GameObject obj in deactivateOnDeath) {
+            obj.SetActive(true);
+        }
+
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Asteroid")) {
+            Destroy(obj);
+        }
+
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Bullet")) {
+            Destroy(obj);
+        }
+
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

@@ -8,7 +8,7 @@ public class Asteroid : MovableObject
     public int score;
     private GameObject game;
 
-    void Start() {
+    void OnEnable() {
         game = GameObject.FindGameObjectWithTag("GameController");
     }
     void Update() {

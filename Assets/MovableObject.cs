@@ -6,7 +6,7 @@ public class MovableObject : MonoBehaviour
 {
     public float velocity;
     // Start is called before the first frame update
-    void Start() {
+    void OnEnable() {
         
     }
 

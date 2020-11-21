@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.Random;
 
 public class Player : MonoBehaviour
 {
@@ -12,8 +13,15 @@ public class Player : MonoBehaviour
     private float[] lanePositions;
 
     private float shootCooldown;
+    private GameObject game;
+
+    private Vector3 targetPosition;
+    private Vector3 dampPosition;
+    private System.Random rng;
     // Start is called before the first frame update
-    void Start() {
+    void OnEnable() {
+        rng = new System.Random();
+        game = GameObject.FindGameObjectWithTag("GameController");
         lane = 1;
         numberOfLanes = transform.GetComponentInParent<Game>().numberOfLanes;
         lanePositions = transform.GetComponentInParent<Game>().lanePositions;
@@ -28,6 +36,7 @@ public class Player : MonoBehaviour
     }
 
     void FixedUpdate() {
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition + new Vector3(0, 0.03f, 0) * rng.Next(-1, 1), ref dampPosition, fireDelay / 2, 100);
         shootCooldown -= Time.fixedDeltaTime;
     }
 
@@ -37,7 +46,7 @@ public class Player : MonoBehaviour
     }
 
     private void UpdatePosition() {
-        transform.position = new Vector3(transform.position.x, lanePositions[lane], 0);
+        targetPosition = new Vector3(transform.position.x, lanePositions[lane], 0);
     }
 
     public void MoveUp() {
@@ -48,6 +57,12 @@ public class Player : MonoBehaviour
     public void MoveDown() {
         lane = Mathf.Min(numberOfLanes - 1, lane + 1);
         UpdatePosition();
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag.Equals("Asteroid")) {
+            game.GetComponent<Game>().TakeDamage(game.GetComponent<Game>().maxHp);
+        }
     }
 
 }
