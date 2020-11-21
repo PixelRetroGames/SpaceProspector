@@ -11,6 +11,10 @@ public class Asteroid : MovableObject
     private GameObject game;
     private float animationDuration;
     private float animationTimer; 
+
+    public bool IsDestroyed() {
+        return animationTimer > 0;
+    }
     public void OnEnable() {
 
         game = GameObject.FindGameObjectWithTag("GameController");
@@ -31,7 +35,9 @@ public class Asteroid : MovableObject
         Vector3 screenLeftBorders = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         transform.position += new Vector3(velocity, 0, 0) * Time.deltaTime;
         if (transform.position.x >= screenRightBorders.x || transform.position.x <= screenLeftBorders.x) {
-            game.GetComponent<Game>().TakeDamage(damage);
+            if (!IsDestroyed()) {
+                game.GetComponent<Game>().TakeDamage(damage);
+            }
             Destroy(this.gameObject);
         }
     }

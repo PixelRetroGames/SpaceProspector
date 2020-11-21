@@ -68,6 +68,9 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag.Equals("Asteroid")) {
+            if (other.gameObject.GetComponent<Asteroid>().IsDestroyed()) {
+                return;
+            }
             game.GetComponent<Game>().TakeDamage(game.GetComponent<Game>().maxHp);
         }
     }
