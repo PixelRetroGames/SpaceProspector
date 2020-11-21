@@ -11,14 +11,19 @@ public class Game : MonoBehaviour
     public int maxHp;
     public int hp;
     private int score;
+    public GameObject backgroundObj;
+    public GameObject asteroidSpawnerObj;
     public GameObject scoreObj;
     public GameObject hpObj;
     public GameObject deadObj;
     public GameObject[] deactivateOnDeath;
     // Start is called before the first frame update
     void OnEnable() {
+        asteroidSpawnerObj.GetComponent<AsteroidSpawner>().OnEnable();
+        print("Called");
         score = 0;
         UpdateScoreText();
+        UpdateParameters();
         hp = maxHp;
         UpdateHpText();
     }
@@ -49,9 +54,17 @@ public class Game : MonoBehaviour
         // hpObj.GetComponent<Text>().alignment = TextAnchor.UpperCenter;
     }
 
+    public void UpdateParameters() {    
+        float oldSpawnChance = asteroidSpawnerObj.GetComponent<AsteroidSpawner>().spawnChance;
+        asteroidSpawnerObj.GetComponent<AsteroidSpawner>().spawnChance = Mathf.Min(100.0f , oldSpawnChance + 3 * Mathf.Log((oldSpawnChance + 1) / 50));
+        asteroidSpawnerObj.GetComponent<AsteroidSpawner>().speed -= 0.02f;
+        backgroundObj.GetComponent<ScrollBackground>().scrollSpeed = -asteroidSpawnerObj.GetComponent<AsteroidSpawner>().speed * 0.67f;
+    }
     public void AddScore(int val) {
+        val = val * (int) (100 * Mathf.Floor((Mathf.Sqrt(1.0f * score / 100 + 1))));
         score += val;
         UpdateScoreText();
+        UpdateParameters();
     }
 
     private void UpdateScoreText() {

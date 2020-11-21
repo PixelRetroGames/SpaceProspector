@@ -5,10 +5,13 @@ using static System.Random;
 
 public class AsteroidSpawner : MonoBehaviour
 {
+    public float initialSpeed;
+    public float initialSpawnChance;
     public float spawnDelay;
     public GameObject asteroid;
     public float spawnCooldownTime;
     public float spawnChance;
+    public float speed;
 
     private System.Random rng;
     private int numberOfLanes;
@@ -20,7 +23,9 @@ public class AsteroidSpawner : MonoBehaviour
 
     private float positionX;
     // Start is called before the first frame update
-    void OnEnable() {
+    public void OnEnable() {
+        speed = initialSpeed;
+        spawnChance = initialSpawnChance;
         positionX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x;
         rng = new System.Random();
         numberOfLanes = transform.GetComponentInParent<Game>().numberOfLanes;
@@ -54,7 +59,8 @@ public class AsteroidSpawner : MonoBehaviour
                 int chosenLane = rng.Next(freeLanes.Count);
                 int lane = freeLanes[chosenLane];
                 laneCooldown[lane] = spawnDelay;
-                Instantiate(asteroid, new Vector3(positionX, lanePositions[lane], 0), Quaternion.identity); 
+                asteroid.GetComponent<Asteroid>().velocity = speed;
+                Instantiate(asteroid, new Vector3(positionX, lanePositions[lane], 0), Quaternion.identity);
             }
         }
     }
