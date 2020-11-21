@@ -34,7 +34,7 @@ public class Asteroid : MovableObject
         Vector3 screenRightBorders = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
         Vector3 screenLeftBorders = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         transform.position += new Vector3(velocity, 0, 0) * Time.deltaTime;
-        if (transform.position.x >= screenRightBorders.x + 2 || transform.position.x <= screenLeftBorders.x - 2) {
+        if (transform.position.x >= screenRightBorders.x + 2 || transform.position.x <= screenLeftBorders.x - 0.25f) {
             if (!IsDestroyed()) {
                 game.GetComponent<Game>().TakeDamage(damage);
             }
