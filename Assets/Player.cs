@@ -37,6 +37,13 @@ public class Player : MonoBehaviour
         if (shootCooldown <= 0) {
             Shoot();
         }
+
+        if (Input.GetKeyDown("up")) {
+            MoveUp();
+        }
+        if (Input.GetKeyDown("down")) {
+            MoveDown();
+        }
     }
 
     void FixedUpdate() {
