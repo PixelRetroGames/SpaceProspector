@@ -7,7 +7,6 @@ public class Asteroid : MovableObject
     public int damage;
     public int score;
     private GameObject game;
-
     void OnEnable() {
         game = GameObject.FindGameObjectWithTag("GameController");
     }
@@ -24,6 +23,7 @@ public class Asteroid : MovableObject
 
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag.Equals("Bullet")) {
+            game.GetComponent<Game>().impactSound.Play();
             game.GetComponent<Game>().AddScore(score);
         }
         Destroy(this.gameObject);
