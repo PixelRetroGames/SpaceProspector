@@ -42,9 +42,11 @@
      <Compile Include="Assets\Game.cs" />
      <Compile Include="Assets\MovableObject.cs" />
      <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\PlayerAPI.cs" />
      <Compile Include="Assets\PlayerController.cs" />
      <Compile Include="Assets\ScrollBackground.cs" />
      <Compile Include="Assets\SoundGenerator.cs" />
+     <None Include="Assets\PlayerAPI\GLOBAL_STATS.txt" />
     <Reference Include="UnityEngine">
         <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

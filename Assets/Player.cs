@@ -62,13 +62,17 @@ public class Player : MonoBehaviour
     }
 
     public void MoveUp() {
-        moveUpSound.Play();
+        if (lane > 0) {
+            moveUpSound.Play();
+        }
         lane = Mathf.Max(0, lane - 1);
         UpdatePosition();
     }
 
     public void MoveDown() {
-        moveDownSound.Play();
+        if (lane < numberOfLanes - 1) {
+            moveDownSound.Play();
+        }
         lane = Mathf.Min(numberOfLanes - 1, lane + 1);
         UpdatePosition();
     }

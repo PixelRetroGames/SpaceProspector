@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
+    public PlayerAPI playerAPIObj;
     public int numberOfLanes;
     public float[] lanePositions;
     public int maxHp;
@@ -44,6 +45,9 @@ public class Game : MonoBehaviour
     private void CheckLoseCondition() {
         if (hp == 0 && !dead) {
             dead = true;
+            playerAPIObj.AddSlotocoins(score);
+            deadObj.GetComponentInChildren<Text>().text = "\nGame over!\n\nEarned " + score + " slotocoins\n\n" + "Total slotocoins " + playerAPIObj.GetSlotocoins() + "\n\n\n\n"; 
+            deadObj.GetComponentInChildren<Text>().alignment = TextAnchor.MiddleCenter;
             deadObj.SetActive(true);
             backgroundMusic.Stop();
             deathSound.Play();
@@ -105,5 +109,9 @@ public class Game : MonoBehaviour
         gameObject.SetActive(true);
 
         retrySound.Play();
+    }
+
+    public void Exit() {
+        Application.Quit();
     }
 }
