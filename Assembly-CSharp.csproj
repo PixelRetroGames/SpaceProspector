@@ -39,6 +39,7 @@
      <Compile Include="Assets\Asteroid.cs" />
      <Compile Include="Assets\AsteroidSpawner.cs" />
      <Compile Include="Assets\Bullet.cs" />
+     <Compile Include="Assets\Camera.cs" />
      <Compile Include="Assets\Game.cs" />
      <Compile Include="Assets\MovableObject.cs" />
      <Compile Include="Assets\Player.cs" />

@@ -26,7 +26,7 @@ public class AsteroidSpawner : MonoBehaviour
     public void OnEnable() {
         speed = initialSpeed;
         spawnChance = initialSpawnChance;
-        positionX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x;
+        positionX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x + 2;
         rng = new System.Random();
         numberOfLanes = transform.GetComponentInParent<Game>().numberOfLanes;
         lanePositions = transform.GetComponentInParent<Game>().lanePositions;
