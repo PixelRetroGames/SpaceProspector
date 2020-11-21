@@ -11,8 +11,8 @@ public class Asteroid : MovableObject
     private GameObject game;
     private float animationDuration;
     private float animationTimer; 
-
     public void OnEnable() {
+
         game = GameObject.FindGameObjectWithTag("GameController");
         animationDuration = animator.runtimeAnimatorController.animationClips[0].length;
 
@@ -38,6 +38,7 @@ public class Asteroid : MovableObject
 
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag.Equals("Bullet")) {
+            game.GetComponent<Game>().impactSound.Play();
             game.GetComponent<Game>().AddScore(score);
         }
         transform.GetComponent<BoxCollider2D>().enabled = false;

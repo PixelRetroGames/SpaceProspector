@@ -7,6 +7,10 @@ public class Player : MonoBehaviour
 {
     public float fireDelay;
     public GameObject bullet;
+
+    public SoundGenerator moveUpSound;
+    public SoundGenerator moveDownSound;
+    public SoundGenerator shootSound;
     private int lane;
     private int numberOfLanes;
 
@@ -41,8 +45,9 @@ public class Player : MonoBehaviour
     }
 
     private void Shoot() {
-         Instantiate(bullet, transform.position + new Vector3(0.23f, 0, 0), Quaternion.identity);
-         shootCooldown = fireDelay;
+        shootSound.Play();
+        Instantiate(bullet, transform.position + new Vector3(0.23f, 0, 0), Quaternion.identity);
+        shootCooldown = fireDelay;
     }
 
     private void UpdatePosition() {
@@ -50,11 +55,13 @@ public class Player : MonoBehaviour
     }
 
     public void MoveUp() {
+        moveUpSound.Play();
         lane = Mathf.Max(0, lane - 1);
         UpdatePosition();
     }
 
     public void MoveDown() {
+        moveDownSound.Play();
         lane = Mathf.Min(numberOfLanes - 1, lane + 1);
         UpdatePosition();
     }

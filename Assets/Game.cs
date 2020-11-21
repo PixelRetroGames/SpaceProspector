@@ -13,14 +13,22 @@ public class Game : MonoBehaviour
     private int score;
     public GameObject backgroundObj;
     public GameObject asteroidSpawnerObj;
+    private bool dead;
     public GameObject scoreObj;
     public GameObject hpObj;
     public GameObject deadObj;
     public GameObject[] deactivateOnDeath;
+    public SoundGenerator deathSound;
+    public SoundGenerator retrySound;
+    public SoundGenerator impactSound;
+    public AudioSource backgroundMusic;
+
     // Start is called before the first frame update
     void OnEnable() {
         asteroidSpawnerObj.GetComponent<AsteroidSpawner>().OnEnable();
         print("Called");
+        backgroundMusic.Play();
+        dead = false;
         score = 0;
         UpdateScoreText();
         UpdateParameters();
@@ -34,13 +42,15 @@ public class Game : MonoBehaviour
     }
 
     private void CheckLoseCondition() {
-        if (hp == 0) {
+        if (hp == 0 && !dead) {
+            dead = true;
             deadObj.SetActive(true);
+            backgroundMusic.Stop();
+            deathSound.Play();
             for (int i = 0; i < deactivateOnDeath.Length; i++) {
                 deactivateOnDeath[i].SetActive(false);
             }
             Time.timeScale = 0;
-            Application.Quit();
         }
     }
 
@@ -93,5 +103,7 @@ public class Game : MonoBehaviour
 
         gameObject.SetActive(false);
         gameObject.SetActive(true);
+
+        retrySound.Play();
     }
 }
