@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f152eaedf681ea44990c1959ccbbafb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: -1.02
+  velocity: -1.1599998
   damage: 1
   score: 1
   animator: {fileID: 1804052}
@@ -260,7 +260,7 @@ Animator:
   m_GameObject: {fileID: 2294874963973299377}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5d5163aa9416f904fb1d257d388a9893, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1ba1779c0f7a2154e9f90c927c9ab728, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

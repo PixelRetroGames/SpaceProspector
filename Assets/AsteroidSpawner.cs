@@ -22,6 +22,8 @@ public class AsteroidSpawner : MonoBehaviour
     public float spawnCooldown;
 
     private float positionX;
+
+    public RuntimeAnimatorController[] animations;
     // Start is called before the first frame update
     public void OnEnable() {
         speed = initialSpeed;
@@ -59,6 +61,9 @@ public class AsteroidSpawner : MonoBehaviour
                 int chosenLane = rng.Next(freeLanes.Count);
                 int lane = freeLanes[chosenLane];
                 laneCooldown[lane] = spawnDelay;
+                int asteroidType = rng.Next(animations.Length);
+                asteroid.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+                asteroid.GetComponent<Animator>().runtimeAnimatorController = animations[asteroidType];
                 asteroid.GetComponent<Asteroid>().velocity = speed;
                 Instantiate(asteroid, new Vector3(positionX, lanePositions[lane], 0), Quaternion.identity);
             }
