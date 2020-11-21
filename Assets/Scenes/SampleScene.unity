@@ -138,6 +138,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShootSound
       objectReference: {fileID: 0}
+    - target: {fileID: 6898639553834343573, guid: 390acae0a87f9db4b87237ac54aa61e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6898639553834343574, guid: 390acae0a87f9db4b87237ac54aa61e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1643,7 +1648,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a203b42fb69b11f4f8aabc6c3f85ab91, type: 3}
+      objectReference: {fileID: 8300000, guid: 872fd68183e07aa43a145635d5cd4dd5, type: 3}
     - target: {fileID: 6898639553834343573, guid: 390acae0a87f9db4b87237ac54aa61e7,
         type: 3}
       propertyPath: m_Name
@@ -1773,6 +1778,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoveDownSound
       objectReference: {fileID: 0}
+    - target: {fileID: 6898639553834343573, guid: 390acae0a87f9db4b87237ac54aa61e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6898639553834343574, guid: 390acae0a87f9db4b87237ac54aa61e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1897,6 +1907,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RetrySound
       objectReference: {fileID: 0}
+    - target: {fileID: 6898639553834343573, guid: 390acae0a87f9db4b87237ac54aa61e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6898639553834343574, guid: 390acae0a87f9db4b87237ac54aa61e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2020,6 +2035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MoveUpSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898639553834343573, guid: 390acae0a87f9db4b87237ac54aa61e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6898639553834343574, guid: 390acae0a87f9db4b87237ac54aa61e7,
         type: 3}
@@ -2944,7 +2964,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 29db35e5e9a55884abf15999ba1e7948, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 045459b2ad41585408b814db2d9a5230, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
